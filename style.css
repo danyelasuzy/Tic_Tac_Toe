@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(./images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-family: "Playwrite DE LA", cursive;
+  position: relative;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: rgb(255, 77, 0);
+  font-size: 70px;
+  text-align: center;
+  padding-top: 25px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-shadow: 2px 2px #4e403e;
+}
+
+#board {
+  width: 450px;
+  height: 450px;
+  background-color: #a45a51;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.box {
+  width: 146px;
+  height: 146px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  border-top: 4px solid #4e403e;
+  border-left: 4px solid #4e403e;
+}
+.box:last-child {
+  border-right: 4px solid #4e403e;
+}
+.box:nth-child(3n) {
+  border-right: 4px solid #4e403e;
+}
+.box:nth-last-child(-n + 3) {
+  border-bottom: 4px solid #4e403e;
+}
+
+button {
+  font-family: "Playwrite DE LA", cursive;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px #4e403e;
+}
+
+button:hover {
+  background-color: #e67e22;
+}
