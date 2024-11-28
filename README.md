@@ -20,7 +20,7 @@ The goal is simple: align three symbols in a row, column, or diagonal to win!
 
 ### 🌟 Core Features:
 
-- **Two-player mode**: Alternating turns between Turkey and Pumpkin.
+- **Computer-player mode**: Alternating turns between Turkey and Pumpkin.
 - **Dynamic DOM updates**: Every click updates the grid visually and programmatically.
 - **Win detection**: Highlights the winning combination.
 - **Tie detection**: Declares a tie if all boxes are filled without a winner.
