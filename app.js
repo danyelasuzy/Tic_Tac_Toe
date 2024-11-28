@@ -52,7 +52,6 @@ const findBestMove = () => {
   return null;
 };
 
-
 // Computer move set-up
 const computerMove = () => {
   if (gameOver) return;
@@ -111,6 +110,7 @@ const clickBox = (e) => {
     spaces[id] = currentPlayer;
     if (currentPlayer === X_img) {
       turkeySound.play();
+      turkeySound.volume = 0.7;
     } else {
       corkSound.play();
     }
