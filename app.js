@@ -104,49 +104,57 @@ const computerMove = () => {
 const clickBox = (e) => {
   if (gameOver) return;
 
-  const id = e.target.id;
+  const box = e.target.closest(".box");
+  if (!box) return;
 
-  if (!spaces[id]) {
-    spaces[id] = currentPlayer;
-    if (currentPlayer === X_img) {
-      turkeySound.play();
-      turkeySound.volume = 0.7;
-    } else {
-      corkSound.play();
-    }
-    const img = document.createElement("img");
-    img.src = currentPlayer;
-    img.alt = currentPlayer === X_img ? "Turkey" : "Pumpkin";
-    img.style.width = "90%";
-    img.style.height = "90%";
-    img.style.borderRadius = "50%";
-    img.style.boxShadow = "4px 4px 8px black";
-    e.target.appendChild(img);
+  const id = box.id;
 
-    const winningCombo = playerWin();
-    if (winningCombo) {
-      highlightWinningCombination(winningCombo);
-      gameOver = true;
-      setTimeout(() => {
-        alert(`${currentPlayer === X_img ? "Turkey" : "Pumpkin"} wins!`);
-      }, 300);
-      return;
-    }
+  if (spaces[id] !== null) {
+    return;
+  }
 
-    if (spaces.every((space) => space !== null)) {
-      gameOver = true;
-      setTimeout(() => {
-        alert("It's a tie!");
-        reset();
-      }, 300);
-      return;
-    }
+  spaces[id] = currentPlayer;
 
-    currentPlayer = currentPlayer === X_img ? O_img : X_img;
+  if (currentPlayer === X_img) {
+    turkeySound.play();
+    turkeySound.volume = 0.7;
+  } else {
+    corkSound.play();
+  }
 
-    if (currentPlayer === O_img) {
-      setTimeout(computerMove, 1200);
-    }
+  const img = document.createElement("img");
+  img.src = currentPlayer;
+  img.alt = currentPlayer === X_img ? "Turkey" : "Pumpkin";
+  img.style.width = "90%";
+  img.style.height = "90%";
+  img.style.borderRadius = "50%";
+  img.style.boxShadow = "4px 4px 8px black";
+  box.appendChild(img);
+
+  // Check for a winning combination.
+  const winningCombo = playerWin();
+  if (winningCombo) {
+    highlightWinningCombination(winningCombo);
+    gameOver = true;
+    setTimeout(() => {
+      alert(`${currentPlayer === X_img ? "Turkey" : "Pumpkin"} wins!`);
+    }, 300);
+    return;
+  }
+
+  if (spaces.every((space) => space !== null)) {
+    gameOver = true;
+    setTimeout(() => {
+      alert("It's a tie!");
+      reset();
+    }, 300);
+    return;
+  }
+
+  currentPlayer = currentPlayer === X_img ? O_img : X_img;
+
+  if (currentPlayer === O_img) {
+    setTimeout(computerMove, 1200);
   }
 };
 
@@ -161,7 +169,6 @@ const reset = () => {
   gameOver = false;
 };
 
-// Highlight the winning line
 const highlightWinningCombination = (winningCombo) => {
   let isHighlighted = false;
   const interval = setInterval(() => {
